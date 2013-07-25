@@ -1,18 +1,16 @@
-<% if @event %>
-	<% if @event.errors.any? %>
-    <ul>
-    <% @event.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<div id='errors'>
+<% if @errors %>
+	<% @errors.each do |error| %>
+		<p><%= error %></p>
 	<% end %>
 <% end %>
+<div>
 
-<form action="/events/create" method="post">
+<form id='new_post' action="/events/create" method="post">
 	<h3>Create Event</h3>
-	Title:<input type="text" name="title"><br>
-	Organizer Name:<input type="text" name="name"><br>
-	Organizer Email:<input type="text" name="email"><br>
-	Date:<input type="text" name="date"><br>
+	Title:<input type="text" name="title" value='<%= @event.title %>'><br>
+	Organizer Name:<input type="text" name="name" value='<%= @event.organizer_name %>'><br>
+	Organizer Email:<input type="text" name="email" value='<%= @event.organizer_email %>'><br>
+	Date:<input type="text" name="date" value='<%= @event.date %>'><br>
 	<input type="submit">
 </form>

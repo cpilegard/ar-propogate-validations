@@ -17,10 +17,15 @@ post '/events/create' do
   name  = params[:name]
   email = params[:email]
   date  = params[:date]
-  @event = Event.create({ title: title, organizer_name: name, organizer_email: email, date: date })
+  p title
+  p name
+  p email
+  p date
+  @event = Event.create(title: title, organizer_name: name, organizer_email: email, date: date)
   if @event.errors.any?
-  	erb :new
+    @errors = @event.errors.full_messages
+    erb :new
   else
-  	redirect to('/')
+    redirect '/'
   end
 end
